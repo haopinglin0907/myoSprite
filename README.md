@@ -4,10 +4,14 @@ Control sprite using myoArmband. The taks of the game is to collect coins using 
 
 The mappings of the gestures and the direction of the sprite are as follow:
 
-Up: Wrist and finger extension
-Down: Fist
-Left: Opposition
-Right: Finger mass extension
+### Up: Wrist and finger extension
+
+### Down: Fist
+
+### Left: Opposition
+
+### Right: Finger mass extension
+
 
 ## Installation (Anaconda)
 
