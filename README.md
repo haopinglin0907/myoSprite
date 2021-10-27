@@ -27,4 +27,7 @@ conda install --file requirements.txt
 
 ## Usage
 
-run "python main.py"
+1) Run "python main_calibration.py" to collect within session calibration data (subject-dependent) and train a CNN model that will be used later in main.py. Please follow the instruction to perform the gesture.
+
+
+2) Run "python main.py", the game will be controlled using the model trained on the calibration data from last step. 
