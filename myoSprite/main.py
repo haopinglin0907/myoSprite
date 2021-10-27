@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     # load pretrained model that was trained on Snow, Dan, Rita, and Hao-Ping (2 sessions each person)
     # Data augmentation was applied to tackle the rotation / orientation issue
-    model = load(open('model_DA_0921.pkl', 'rb'))
+    model = load(open('model.pkl', 'rb'))
     
     mm = MyoMain(model)
     # mm.add_emg_buffer_handler(emg_buffer_handler)

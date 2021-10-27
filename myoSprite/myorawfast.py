@@ -373,7 +373,7 @@ class MyoRaw(object):
             
             # Use pretrained tensorflow model to predict the gesture from myo and control the sprite
             emg_data = []
-            majorityVoteWindowSize = 45
+            majorityVoteWindowSize = 1
             if len(self.emg_list) >= 400:
 
                 emg_data = self.emg_list[-30:]
@@ -386,7 +386,7 @@ class MyoRaw(object):
                     # take the majority vote from multiple frames
                     self.label = stats.mode(self.label_list[-majorityVoteWindowSize:])[0][0]
                                                                       
-                    if np.mean(np.sqrt(np.sum(np.array(self.emg_list[-5:])**2, axis = 0))) <= 10 or self.label == 3:
+                    if np.mean(np.sqrt(np.sum(np.array(self.emg_list[-10:])**2, axis = 0))) <= 30 or self.label == 3:
                         
                         self.label = 'Rest'
                         self.similarity = 0
@@ -398,8 +398,7 @@ class MyoRaw(object):
                         self.left_pressed = False
                         self.right_pressed = False
                         self.color  = arcade.color.WHITE
-                        
-                        
+
                     elif self.label == 0:
                         self.label = 'Finger mass extension'
                         emg_temp = np.array(self.emg_list[-majorityVoteWindowSize:]).reshape((-1, 8))
