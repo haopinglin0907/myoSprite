@@ -24,6 +24,7 @@ class MyGame(arcade.Window):
         self.length = 0
         self.label = 'Rest'
         self.status = 'Collecting gesture data'
+        self.trainingSide = 'False'
         self.color = arcade.color.WHITE
         self.total_time = 0.0
         self.output = "00:00:00"
@@ -33,6 +34,7 @@ class MyGame(arcade.Window):
         """ Set up the game and initialize the variables. """
         self.length = 0
         self.label = 'Rest'
+        self.trainingSide = 'False'
         self.total_time = 0.0
         self.color = arcade.color.WHITE
 
@@ -49,7 +51,7 @@ class MyGame(arcade.Window):
 
         # Status
         arcade.draw_text(self.status,
-                         SCREEN_WIDTH / 2, SCREEN_HEIGHT* 0.15 + 5,
+                         SCREEN_WIDTH / 2, SCREEN_HEIGHT* 0.15 + 10,
                          arcade.color.WHITE, 20,
                          anchor_x="center")
         # Label
@@ -72,7 +74,7 @@ class MyGame(arcade.Window):
             arcade.draw_lrtb_rectangle_outline(100 + 75*channel, 150 + 75*channel, 450,
                                                150, arcade.color.WHITE, border_width=2)
 
-            arcade.draw_lrtb_rectangle_filled(102 + 75*channel, 148 + 75*channel, 150 + (self.magnitude[channel] / 128)*300, 150, arcade.color.BRIGHT_GREEN)
+            arcade.draw_lrtb_rectangle_filled(102 + 75*channel, 149 + 75*channel, 150 + (self.magnitude[channel] / 128)*300, 150, arcade.color.BRIGHT_GREEN)
 
 
     def on_update(self, delta_time):

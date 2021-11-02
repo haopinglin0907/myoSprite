@@ -124,15 +124,15 @@ class MyGame(arcade.Window):
         arcade.draw_text(self.label, 10, SCREEN_HEIGHT - 40, arcade.color.WHITE, 20)
 
         # # Put the similarity on the screen
-        # arcade.draw_text("Similarity", SCREEN_WIDTH - 120, SCREEN_HEIGHT - 40, arcade.color.WHITE, 20)
-        # arcade.draw_text(f"{np.abs(self.similarity):.2f}", SCREEN_WIDTH - 93, SCREEN_HEIGHT - 180, self.color, 20)
-        #
-        # # Draw the similarity bar on the screen
-        # arcade.draw_lrtb_rectangle_outline(SCREEN_WIDTH - 80, SCREEN_WIDTH - 50, SCREEN_HEIGHT - 150 + 100,
-        #                                    SCREEN_HEIGHT - 150, arcade.color.WHITE, border_width=3)
-        # arcade.draw_lrtb_rectangle_filled(SCREEN_WIDTH - 78, SCREEN_WIDTH - 52,
-        #                                   SCREEN_HEIGHT - 150 + float(self.similarity) * 100, SCREEN_HEIGHT - 150,
-        #                                   self.color)
+        arcade.draw_text("Similarity", SCREEN_WIDTH - 120, SCREEN_HEIGHT - 40, arcade.color.WHITE, 20)
+        arcade.draw_text(f"{np.abs(self.similarity):.2f}", SCREEN_WIDTH - 93, SCREEN_HEIGHT - 180, self.color, 20)
+
+        # Draw the similarity bar on the screen
+        arcade.draw_lrtb_rectangle_outline(SCREEN_WIDTH - 80, SCREEN_WIDTH - 50, SCREEN_HEIGHT - 150 + 100,
+                                           SCREEN_HEIGHT - 150, arcade.color.WHITE, border_width=3)
+        arcade.draw_lrtb_rectangle_filled(SCREEN_WIDTH - 78, SCREEN_WIDTH - 52,
+                                          SCREEN_HEIGHT - 150 + float(self.similarity) * 100, SCREEN_HEIGHT - 150,
+                                          self.color)
 
     # functions that also allows the control using keyboard
 
