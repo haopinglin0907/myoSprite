@@ -254,12 +254,9 @@ class MyoRaw(object):
         self.similarity = 0
         self.magnitude = 0
         self.model = None
+        self.gestureProfile = None
         self.label = 'Rest'
         self.label_list = []
-        
-        self.gestureProfile = pd.read_pickle('gestureProfile.pkl')
-        self.gestureProfile = self.gestureProfile.set_index('Gesture')
-
 
     def detect_tty(self):
         for p in comports():
@@ -597,15 +594,16 @@ class MyoRaw(object):
 class MyoMain():
 
     """Myo data collection."""
-    def __init__(self, model):
+    def __init__(self, model, gestureProfile):
         self.window = MyGame()
         self.window.setup()
         
         self.mr = MyoRaw()
+        self.mr.model = model
+        self.mr.gestureProfile = gestureProfile
         self.mr.add_emg_handler(self.emg_handler)  # IMPORTANT! pass the function emg_handler to access emg data from MyoRaw
         self.mr.add_battery_handler(self.battery_handler)
-        self.mr.model = model
-        
+
         self.pt = PeriodicThread(self.collect, 1.0/120.0)  # should be 100Hz but see below for explanations
         self.buffer_size = 10  # FIFO emg buffer size.
         self.emg_buffer = []  # FIFO emg buffer

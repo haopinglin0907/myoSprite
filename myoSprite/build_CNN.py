@@ -96,11 +96,11 @@ def train_CNN_model(emg_list, label_list, side_list, ID):
         os.mkdir(f'{ID}')
 
     filename = glob2.glob(f'{ID}/emgRawData*')
-    if len(filename) != 0:
+    if len(filename) == 0:
+        df.to_pickle(f'{ID}/emgRawData_1.pkl')
+    else:
         session = int(sorted(filename, key=os.path.getmtime)[-1].split('_')[1].split('.')[0])
         df.to_pickle(f'{ID}/emgRawData_{session + 1}.pkl')
-    else:
-        df.to_pickle(f'{ID}/emgRawData_1.pkl')
 
     # Training the model
     df_all = pd.DataFrame(None)
