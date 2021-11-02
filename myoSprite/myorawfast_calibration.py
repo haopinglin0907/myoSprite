@@ -30,7 +30,6 @@ from itertools import islice
 Handlers are useful to pass variables across classes
 when these variables are regularily updated!
 '''
-
 CHANNELS = 8
 
 def pack(fmt, *args):
@@ -239,11 +238,15 @@ class MyoRaw(object):
         self.emg_list = []
         self.color = arcade.color.WHITE
         self.magnitude = 0
-        self.status = 'Please follow the instruction'
+        self.ID = None
+        self.Side = 'healthy'
+        self.sideList = []
+        self.status = 'Please perform the gesture with the good hand'
         self.label = 'Rest'
         self.label_list = []
         self.length = 0
-        self.gesture_list = ['Rest', 'Fist', 'Finger mass extension', 'Opposition', 'Wrist and finger extension']
+        self.gesture_list = ['Rest', 'Fist', 'Finger mass extension', 'Opposition', 'Wrist and finger extension',
+                             'Rest', 'Fist', 'Finger mass extension', 'Opposition', 'Wrist and finger extension']
 
 
     def detect_tty(self):
@@ -358,6 +361,8 @@ class MyoRaw(object):
             self.emg_list.append(emg2)
             self.label_list.append(self.label)
             self.label_list.append(self.label)
+            self.sideList.append(self.Side)
+            self.sideList.append(self.Side)
             self.length = len(self.emg_list)
 
             emg_temp = np.array(self.emg_list[-60:]).reshape((-1, 8))
@@ -373,10 +378,24 @@ class MyoRaw(object):
                 self.label = self.gesture_list[3]
             elif len(self.label_list) < 3600:
                 self.label = self.gesture_list[4]
+
+            elif len(self.label_list) < 6000:
+                self.Side = 'training'
+                self.status = 'Switch to the training hand and rest'
+                self.label = self.gesture_list[5]
+            elif len(self.label_list) < 6600:
+                self.status = 'Perform the gesture with the training side'
+                self.label = self.gesture_list[6]
+            elif len(self.label_list) < 7200:
+                self.label = self.gesture_list[7]
+            elif len(self.label_list) < 7800:
+                self.label = self.gesture_list[8]
+            elif len(self.label_list) < 8400:
+                self.label = self.gesture_list[9]
             else:
                 self.status = 'Training CNN model'
                 self.disconnect()
-                train_CNN_model(self.emg_list, self.label_list)
+                train_CNN_model(self.emg_list, self.label_list, self.sideList, self.ID)
                 os._exit(0)
 
 
@@ -496,12 +515,12 @@ class MyoRaw(object):
 class MyoMain():
     """Myo data collection."""
 
-    def __init__(self):
-
+    def __init__(self, ID):
         self.window = MyGame()
         self.window.setup()
 
         self.mr = MyoRaw()
+        self.mr.ID = ID
         self.mr.add_emg_handler(
             self.emg_handler)  # IMPORTANT! pass the function emg_handler to access emg data from MyoRaw
         self.mr.add_battery_handler(self.battery_handler)

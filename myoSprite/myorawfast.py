@@ -401,7 +401,7 @@ class MyoRaw(object):
 
                     elif self.label == 0:
                         self.label = 'Finger mass extension'
-                        emg_temp = np.array(self.emg_list[-majorityVoteWindowSize:]).reshape((-1, 8))
+                        emg_temp = np.array(self.emg_list[-30:]).reshape((-1, 8))
                         
                         # Bar
                         self.similarity = similarity(emg_temp, self.gestureProfile.loc[self.label][0])
@@ -422,7 +422,7 @@ class MyoRaw(object):
                         
                     elif self.label == 1:
                         self.label = 'Fist'
-                        emg_temp = np.array(self.emg_list[-majorityVoteWindowSize:]).reshape((-1, 8))
+                        emg_temp = np.array(self.emg_list[-30:]).reshape((-1, 8))
                         
                         # Bar 
                         self.similarity = similarity(emg_temp, self.gestureProfile.loc[self.label][0])
@@ -443,7 +443,7 @@ class MyoRaw(object):
                         
                     elif self.label == 2:
                         self.label = 'Opposition'
-                        emg_temp = np.array(self.emg_list[-majorityVoteWindowSize:]).reshape((-1, 8))
+                        emg_temp = np.array(self.emg_list[-30:]).reshape((-1, 8))
                         
                         # Bar 
                         self.similarity = similarity(emg_temp, self.gestureProfile.loc[self.label][0])
@@ -464,7 +464,7 @@ class MyoRaw(object):
                             
                     elif self.label == 4:
                         self.label = 'Wrist and finger extension'
-                        emg_temp = np.array(self.emg_list[-majorityVoteWindowSize:]).reshape((-1, 8))
+                        emg_temp = np.array(self.emg_list[-30:]).reshape((-1, 8))
                         
                         # Bar 
                         self.similarity = similarity(emg_temp, self.gestureProfile.loc[self.label][0])
