@@ -4,8 +4,8 @@ def emg_buffer_handler(emg_buffer, *args):
     print(None)
 
 if __name__ == "__main__":
-
-    mm = MyoMain()
+    ID = input('Please enter subject ID: ')
+    mm = MyoMain(ID)
     # mm.add_emg_buffer_handler(emg_buffer_handler)
 
     mm.connect()
