@@ -1,4 +1,4 @@
-# myoSprite
+# myoCoinCollect
 
 Control sprite using myoArmband. The taks of the game is to collect coins using 4 predefined gestures. 
 
@@ -9,6 +9,18 @@ The mappings of the gestures and the direction of the sprite are as follow:
 #### Down: Fist
 
 #### Left: Opposition
+
+#### Right: Finger mass extension
+
+
+# myoShooting
+
+Control sprite using myoArmband. The taks of the game is to shoot bullets towards coin using 2 predefined gestures. 
+
+The mappings of the gestures and the direction of the sprite are as follow:
+
+
+#### Left: Fist
 
 #### Right: Finger mass extension
 
